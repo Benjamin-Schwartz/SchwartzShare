@@ -73,13 +73,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.engine('ejs', ejsMate)
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'))
-
+app.enable('trust proxy');
 app.use(express.urlencoded({ extended: true }))//Parses req.body
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')))//Tells express to use our static directory
 app.use(session(sessionConfig))
 
 app.use(mongoSanitize());
+
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
