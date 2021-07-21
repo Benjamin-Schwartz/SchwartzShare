@@ -1,9 +1,6 @@
 if (process.env.NODE_ENV !== "production") {
     require('dotenv').config();
-} else {
-    sess.cookie.secure = true;
-    app.set("trust proxy", 1);
-}
+} 
 
 
 const express = require('express');
@@ -75,7 +72,6 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'))
 
 app.use(express.urlencoded({ extended: true }))//Parses req.body
-app.use(express.bodyParser());
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')))//Tells express to use our static directory
 app.use(session(sessionConfig))
