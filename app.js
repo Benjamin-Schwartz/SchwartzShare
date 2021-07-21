@@ -1,6 +1,6 @@
 if (process.env.NODE_ENV !== "production") {
     require('dotenv').config();
-} 
+}
 
 
 const express = require('express');
@@ -66,6 +66,9 @@ const sessionConfig = {
 
 
 const app = express();
+
+bodyParser = require("body-parser");
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.engine('ejs', ejsMate)
 app.set('view engine', 'ejs');
