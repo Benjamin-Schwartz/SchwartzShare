@@ -1,0 +1,26 @@
+<% layout('layouts/boilerplate') %>
+    <h1>New Post</h1>
+    <form action="/posts" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" id="title" name="post[title]" required>
+            <div class="invalid-feedback">
+                Title required
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" name="post[description]" required></textarea>
+            <div class="invalid-feedback">
+                Description required
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="images" class="form-label" multiple>Multiple files input example</label>
+            <input class="form-control" type="file" id="images" name="image" multiple>
+        </div>
+
+        <button>Create New Post!</button>
+    </form>
+
+    <a href="/posts">Go Back</a>
