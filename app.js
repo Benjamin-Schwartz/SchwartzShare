@@ -37,16 +37,14 @@ mongoose.connect(dbUrl, {
 
 });
 
-//const secret = process.env.SECRET || 'thisisasecret';
-const secret = '62415749CC95EE65A892FBD5AD752';
 
+const secret = process.env.SECRET || 'thisisasecret';
+console.log(secret);
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", () => {
     console.log("Database connected");
 })
-
-
 
 
 const sessionConfig = {
@@ -98,8 +96,8 @@ app.use('/posts/:id/comment', commentRoutes);
 app.get('/', (req, res) => {
     res.render('home');
 })
-//const port = process.env.PORT || 3000;
-const port = '9E3A66B623C529EC13377DDEE36DC';
+const port = process.env.PORT || 3000;
+
 app.listen(port, () => {
     console.log(`Listening on port ${port}`)
 })
