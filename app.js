@@ -68,7 +68,7 @@ const sessionConfig = {
 const app = express();
 
 bodyParser = require("body-parser");
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.engine('ejs', ejsMate)
 app.set('view engine', 'ejs');
