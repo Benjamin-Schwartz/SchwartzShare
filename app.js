@@ -94,7 +94,12 @@ app.use('/', userRoutes);
 app.use('/posts', postRoutes);
 app.use('/posts/:id/comment', commentRoutes);
 app.get('/', (req, res) => {
-    res.render('home');
+    try {
+        res.render('home');
+    }
+    catch (e) {
+        res.send(e);
+    }
 })
 const port = process.env.PORT || 3000;
 //const port = process.env.PORT;
