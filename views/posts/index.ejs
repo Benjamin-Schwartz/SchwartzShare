@@ -1,45 +1,46 @@
 <% layout('layouts/boilerplate') %>
-
-    <% for (let post of posts) { %>
-        <div class="card mx-auto bg-dark text-white" style="width: 40rem;">
-            <div class="card-header mt-3">
-                Submitted By: <%= post.author.username %>
-            </div>
-            <div id="postCarousel" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <div id="postCarousel" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-inner role=" listbox"
-                            style="max-width:900px; max-height:600px !important;">
-                            <% post.images.forEach((img,i)=> { %>
-                                <div class="carousel-item <%= i===0 ? 'active' : '' %>">
-                                    <img src="<%= img.url %>" class="d-block w-100 card-img-top" alt="">
-                                </div>
-                                <% }) %>
-                        </div>
-                        <% if( post.images.length> 1) { %> <a class="carousel-control-prev" href="#postCarousel"
-                                role="button" data-bs-slide="prev"> <span class="carousel-control-prev-icon"
-                                    aria-hidden="true"></span> <span class="sr-only">Previous</span> </a> <a
-                                class="carousel-control-next" href="#postCarousel" role="button" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span> <span
-                                    class="sr-only">Next</span> </a>
-                            <% } %>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text">
-                            <%= post.description %>
-                                <hr>
-                                Comments: <br>
-                                <% for(let comment of post.comments) { %>
-
-                                    <b>
-                                        <%= comment.author.username %>:
-                                    </b>
-                                    <%= comment.body %> <br>
-                                        <%}%>
-                        </p>
-                        <a href="/posts/<%=post._id%>" class="card-link">VIew Post</a>
-                    </div>
+    <% posts.reverse() %>
+        <% for (let post of posts) { %>
+            <div class="card mx-auto bg-dark text-white" style="width: 40rem;">
+                <div class="card-header mt-3">
+                    Submitted By: <%= post.author.username %>
                 </div>
+                <div id="postCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div id="postCarousel" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner role=" listbox"
+                                style="max-width:900px; max-height:600px !important;">
+                                <% post.images.forEach((img,i)=> { %>
+                                    <div class="carousel-item <%= i===0 ? 'active' : '' %>">
+                                        <img src="<%= img.url %>" class="d-block w-100 card-img-top" alt="">
+                                    </div>
+                                    <% }) %>
+                            </div>
+                            <% if( post.images.length> 1) { %> <a class="carousel-control-prev" href="#postCarousel"
+                                    role="button" data-bs-slide="prev"> <span class="carousel-control-prev-icon"
+                                        aria-hidden="true"></span> <span class="sr-only">Previous</span> </a> <a
+                                    class="carousel-control-next" href="#postCarousel" role="button"
+                                    data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span> <span
+                                        class="sr-only">Next</span> </a>
+                                <% } %>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">
+                                <%= post.description %>
+                                    <hr>
+                                    Comments: <br>
+                                    <% for(let comment of post.comments) { %>
+
+                                        <b>
+                                            <%= comment.author.username %>:
+                                        </b>
+                                        <%= comment.body %> <br>
+                                            <%}%>
+                            </p>
+                            <a href="/posts/<%=post._id%>" class="card-link">VIew Post</a>
+                        </div>
+                    </div>
 
 
-                <% } %>
+                    <% } %>
