@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
         path: 'comments',
         populate: {
             path: 'author',
-            
+
         }
     }).populate('author');
     res.render('posts/index', { posts })
@@ -61,7 +61,7 @@ router.put('/:id', isLoggedIn, isAuthor, upload.array('image'), async (req, res)
     const imgs = req.files.map(f => ({ url: f.path, filename: f.filename }));
     post.images.push(...imgs);
     await post.save();
-    req.flash('success', 'Succesfully Made a new post!');
+    req.flash('success', 'Succesfully updated new post!');
     res.redirect(`/posts/${post.id}`);
 })
 
