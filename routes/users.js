@@ -47,14 +47,10 @@ router.put('/profile/:id', upload.single('image'), async (req, res) => {
     const user = await User.findByIdAndUpdate(req.params.id, { ...req.body.post });
     user.profileImage.url = req.file.path;
     user.profileImage.filename = req.file.filename;
-    //  user.description = req.body.post;
     await user.save();
-
     res.redirect(`/profile/${user.id}`)
-    // res.send(req.body);
+
 })
-
-
 
 router.post('/login', passport.authenticate('local', { failureFlash: true, failureRedirect: '/login' }), (req, res) => {
     req.flash('success', 'welcome back!');
@@ -64,6 +60,8 @@ router.post('/login', passport.authenticate('local', { failureFlash: true, failu
     res.redirect(redirectUrl);
 
 })
+
+
 
 router.get('/logout', (req, res) => {
     req.logout();

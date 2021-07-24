@@ -33,6 +33,8 @@ router.post('/', upload.array('image'), isLoggedIn, async (req, res) => {
     const post = new Post(req.body.post);
     post.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
     post.author = req.user._id;
+
+
     await post.save();
     console.log(post);
     req.flash('success', 'successfully made a new post!');

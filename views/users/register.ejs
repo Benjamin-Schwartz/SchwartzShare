@@ -1,5 +1,5 @@
 <% layout('layouts/boilerplate')%>
-    <h1>Register</h1>
+    <!-- <h1>Register</h1>
     <form action="/register" method="POST" class="validated-form" novalidate>
         <div class="mb-3">
             <label class="form-label" for="username">Username</label>
@@ -27,4 +27,40 @@
             <label class="form-check-label" for="exampleCheck1">I am 18 years or older.</label>
         </div>
         <button class="btn btn-success">Register</button>
-    </form>
+    </form> -->
+    <link rel="stylesheet" href="/stylesheets/login.css">
+    <script src='/javascripts/showPassword.js'></script>
+    <div class="wrapper">
+        <div class="card">
+            <form action="/register" method="POST" class="validated-form d-flex flex-column" novalidate>
+
+                <div class="h3 text-center text-white">Register</div>
+                <div class="d-flex align-items-center input-field my-3 mb-2"> <span class="far fa-user p-2"></span>
+                    <input type="text" placeholder="Email" name="email" id="email" required class="form-control">
+                </div>
+                <div class="d-flex align-items-center input-field my-3 mb-4"> <span class="far fa-user p-2"></span>
+                    <input type="text" placeholder="Username" name="username" id="username" required
+                        class="form-control">
+                </div>
+                <div class="d-flex align-items-center input-field mb-4"> <span class="fas fa-lock p-2"></span>
+                    <input type="password" placeholder="Password" required class="form-control" id="password"
+                        name="password"> <button class="btn" onclick="showPassword()"> <span
+                            class="fas fa-eye-slash"></span> </button>
+                </div>
+                <div class="d-sm-flex align-items-sm-center justify-content-sm-between">
+                </div>
+                <div class="mb-3"> <input type="submit" value="Register" class="btn btn-primary"> </div>
+                <div class="mb-3"> <span class="text-light-white">Don't have an account?</span> <a href="#">Sign Up</a>
+                </div>
+            </form>
+            <div class="position-relative border-bottom my-3 line"> <span class="connect">or connect with</span> </div>
+            <div class="text-center py-3 connections"> <a href="https://wwww.facebook.com" target="_blank" class="px-2">
+                    <img src="https://www.dpreview.com/files/p/articles/4698742202/facebook.jpeg" alt=""> </a> <a
+                    href="https://www.google.com" target="_blank" class="px-2"> <img
+                        src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png"
+                        alt=""> </a> <a href="https://www.github.com" target="_blank" class="px-2"> <img
+                        src="https://www.freepnglogos.com/uploads/512x512-logo-png/512x512-logo-github-icon-35.png"
+                        alt="">
+                </a> </div>
+        </div>
+    </div>

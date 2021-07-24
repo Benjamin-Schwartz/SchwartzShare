@@ -8,6 +8,12 @@ const UserSchema = new Schema({
         url: String,
         filename: String
     },
+    images: [
+        {
+            url: String,
+            filename: String
+        }
+    ],
     description: String,
     email: {
         type: String,
