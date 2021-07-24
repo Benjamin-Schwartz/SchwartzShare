@@ -45,8 +45,10 @@ router.get('/profile/:id/edit', async (req, res) => {
 
 router.put('/profile/:id', upload.single('image'), async (req, res) => {
     const user = await User.findByIdAndUpdate(req.params.id, { ...req.body.post });
-    user.profileImage.url = req.file.path;
-    user.profileImage.filename = req.file.filename;
+    if (req.file) {
+        user.profileImage.url = req.file.path;
+        user.profileImage.filename = req.file.filename;
+    }
     await user.save();
     res.redirect(`/profile/${user.id}`)
 
