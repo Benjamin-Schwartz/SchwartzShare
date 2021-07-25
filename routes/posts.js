@@ -17,7 +17,7 @@ router.get('/newpost', isLoggedIn, (req, res) => {
     res.render('posts/new');
 })
 
-router.get('/', async (req, res) => {
+router.get('/', isLoggedIn, async (req, res) => {
     const posts = await Post.find({}).populate({
         path: 'comments',
         populate: {
