@@ -1,16 +1,18 @@
 <% layout('layouts/boilerplate') %>
+    <h5 class="mt-3">Temporarily can only can see last 20 images in order to save bandwidth, sorry for inconvenience
+        SchwartzSharers working on fix</h5>
     <link rel="stylesheet" href="/stylesheets/index.css">
     <% posts.reverse() %>
-        <% for (let post of posts) { %>
+        <% for (let i=0; i < 20; i++) { %>
             <div class="bg-white border mt-2">
                 <div>
 
                     <div class="d-flex flex-row justify-content-between align-items-center p-2 border-bottom">
                         <div class="d-flex flex-row align-items-center feed-text px-2"><img class="rounded-circle"
-                                src="<%=post.author.profileImage.url%>" width="45">
+                                src="<%=posts[i].author.profileImage.url%>" width="45">
                             <div class="d-flex flex-column flex-wrap ml-2"><span class="font-weight-bold">
-                                    <a href="/profile/<%=post.author._id%>" class="">
-                                        <%= post.author.username %>
+                                    <a href="/profile/<%=posts[i].author._id%>" class="">
+                                        <%= posts[i].author.username %>
                                     </a>
 
                                 </span><span class="text-black-50 time">X minutes ago</span></div>
@@ -18,9 +20,9 @@
                         <div class="feed-icon px-2"><i class="fa fa-ellipsis-v text-black-50"></i></div>
                     </div>
                 </div>
-                <% if(post.images.length) {%>
+                <% if(posts[i].images.length) {%>
                     <div class="feed-image p-2 px-3"><img class="img-fluid img-responsive"
-                            src="<%=post.images[0].url%>">
+                            src="<%=posts[i].images[0].url%>">
 
                         <% }else {%>
                             <div class="feed-image p-2 px-3"><img class="img-fluid img-responsive" src="">
@@ -37,13 +39,13 @@
                             <div class="pl-3 pr-3 pb-2">
 
                                 <strong class="d-block  px-3">
-                                    <%=post.author.username %>
+                                    <%=posts[i].author.username %>
                                 </strong>
                                 <p class="d-block  px-3">
-                                    <%=post.description%>.
+                                    <%=posts[i].description%>.
                                 </p>
                                 <strong class="d-block p-1 px-3 ">Comments</strong>
-                                <% for(let comment of post.comments) { %>
+                                <% for(let comment of posts[i].comments) { %>
                                     <div>
                                         <div class="ml-2 px-3 ">
                                             <strong>
@@ -58,7 +60,7 @@
                                     <% } %>
 
                                         <div class="position-relative comment-box">
-                                            <form action="/posts/<%=post._id%>/comment" class="" method="POST">
+                                            <form action="/posts/<%=posts[i]._id%>/comment" class="" method="POST">
                                                 <input class="w-100 border-0 p-3 input-post" name="comment[body]"
                                                     placeholder="Add a comment...">
                                                 <button class="btn btn-primary  btn-ig">Post</button>
