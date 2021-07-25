@@ -1,50 +1,79 @@
 <% layout('layouts/boilerplate') %>
-
+    <link rel="stylesheet" href="/stylesheets/index.css">
     <% posts.reverse() %>
         <% for (let post of posts) { %>
-            <div class="card mx-auto bg-dark text-white" style="width: 40rem;">
-                <div class="card-header mt-3">
-                    <% let user=post.author %>
-                        Submitted By: <a href="/profile/<%=user._id%>" class="card-link">
-                            <%= post.author.username %>
-                        </a>
-                </div>
-                <div id="postCarousel" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        <div id="postCarousel" class="carousel slide" data-bs-ride="carousel">
-                            <div class="carousel-inner role=" listbox"
-                                style="max-width:900px; max-height:600px !important;">
-                                <% post.images.forEach((img,i)=> { %>
-                                    <div class="carousel-item <%= i===0 ? 'active' : '' %>">
-                                        <img src="<%= img.url %>" class="d-block w-100 card-img-top" alt="">
-                                    </div>
-                                    <% }) %>
-                            </div>
-                            <% if( post.images.length> 1) { %> <a class="carousel-control-prev" href="#postCarousel"
-                                    role="button" data-bs-slide="prev"> <span class="carousel-control-prev-icon"
-                                        aria-hidden="true"></span> <span class="sr-only">Previous</span> </a> <a
-                                    class="carousel-control-next" href="#postCarousel" role="button"
-                                    data-bs-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span> <span
-                                        class="sr-only">Next</span> </a>
-                                <% } %>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">
-                                <%= post.description %>
-                                    <hr>
-                                    Comments: <br>
-                                    <% for(let comment of post.comments) { %>
+            <div class="bg-white border mt-2">
+                <div>
 
-                                        <b>
-                                            <%= comment.author.username %>:
-                                        </b>
-                                        <%= comment.body %> <br>
-                                            <%}%>
-                            </p>
-                            <a href="/posts/<%=post._id%>" class="card-link">VIew Post</a>
+                    <div class="d-flex flex-row justify-content-between align-items-center p-2 border-bottom">
+                        <div class="d-flex flex-row align-items-center feed-text px-2"><img class="rounded-circle"
+                                src="<%=post.author.profileImage.url%>" width="45">
+                            <div class="d-flex flex-column flex-wrap ml-2"><span class="font-weight-bold">
+                                    <a href="/profile/<%=post.author._id%>" class="">
+                                        <%= post.author.username %>
+                                    </a>
+
+                                </span><span class="text-black-50 time">X minutes ago</span></div>
                         </div>
+                        <div class="feed-icon px-2"><i class="fa fa-ellipsis-v text-black-50"></i></div>
+                    </div>
+                </div>
+                <% if(post.images.length) {%>
+                    <div class="feed-image p-2 px-3"><img class="img-fluid img-responsive"
+                            src="<%=post.images[0].url%>">
+
+                        <% }else {%>
+                            <div class="feed-image p-2 px-3"><img class="img-fluid img-responsive" src="">
+
+                                <% } %>
+                            </div>
+                            <div class="d-flex justify-content-end socials p-2 py-3"><i class="fa fa-thumbs-up"></i><i
+                                    class="fa fa-comments-o"></i><i class="fa fa-share"></i></div>
+
+
+
+
+
+                            <div class="pl-3 pr-3 pb-2">
+
+                                <strong class="d-block  px-3">
+                                    <%=post.author.username %>
+                                </strong>
+                                <p class="d-block  px-3">
+                                    <%=post.description%>.
+                                </p>
+                                <strong class="d-block p-1 px-3 ">Comments</strong>
+                                <% for(let comment of post.comments) { %>
+                                    <div>
+                                        <div class="ml-2 px-3 ">
+                                            <strong>
+                                                <%=comment.author.username%>
+                                            </strong>
+
+                                            <%=comment.body%>
+
+                                        </div>
+
+                                    </div>
+                                    <% } %>
+
+                                        <div class="position-relative comment-box">
+                                            <form action="/posts/<%=post._id%>/comment" class="" method="POST">
+                                                <input class="w-100 border-0 p-3 input-post" name="comment[body]"
+                                                    placeholder="Add a comment...">
+                                                <button class="btn btn-primary  btn-ig">Post</button>
+                                            </form>
+                                        </div>
+
+
+                            </div>
                     </div>
 
-
-                    <% } %>
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+            <% } %>

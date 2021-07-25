@@ -13,7 +13,7 @@ router.post('/', catchAsync(async (req, res) => {
     post.comments.push(comment);
     await comment.save();
     await post.save();
-    res.redirect(`/posts/${post._id}`);
+    res.redirect(`/posts`);
 }))
 
 router.delete('/:commentId', async (req, res) => {
