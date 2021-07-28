@@ -1,13 +1,14 @@
 const mongoose = require('mongoose');
 const Comment = require('./comment');
 const Schema = mongoose.Schema;
+const mongoosePaginate = require('mongoose-paginate-v2');
 
 const PostSchema = new Schema({
     title: String,
     images: [
         {
-         url: String,  
-         filename: String
+            url: String,
+            filename: String
         }
     ],
     description: String,
@@ -33,5 +34,5 @@ PostSchema.post('findOneAndDelete', async function (doc) {
         })
     }
 })
-
+PostSchema.plugin(mongoosePaginate);
 module.exports = mongoose.model('Post', PostSchema);

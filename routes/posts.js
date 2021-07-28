@@ -18,13 +18,19 @@ router.get('/newpost', isLoggedIn, (req, res) => {
 })
 
 router.get('/', isLoggedIn, async (req, res) => {
-    const posts = await Post.find({}).populate({
+    const postData = await Post.paginate({}, {
+        populate: {
+            path: 'author'
+        },
+
         path: 'comments',
         populate: {
-            path: 'author',
-
+            path: 'author'
         }
-    }).populate('author');
+    });
+    let posts = postData.docs;
+    console.log(posts[0].comments[0].author);
+
     res.render('posts/index', { posts })
 })
 
@@ -48,6 +54,7 @@ router.get('/:id', isLoggedIn, catchAsync(async (req, res) => {
             path: 'author'
         }
     }).populate('author');
+    console.log(post.comments)
     res.render('posts/show', { post })
 }))
 
